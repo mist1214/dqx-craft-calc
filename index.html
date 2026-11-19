@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職人利益計算ツール by みすとgames</title>
+    <meta name="description" content="ドラクエ10の職人活動の利益計算ツール（非公式ファンツール）。素材費・成功率・販売価格から利益をシミュレーション。">
+    <meta property="og:title" content="職人利益計算ツール by みすとgames">
+    <meta property="og:description" content="ドラクエ10職人の利益計算ツール。素材費・成功率・バザー価格から1回あたり・一括生産の利益を計算。データはブラウザ内に保存。">
+    <meta property="og:type" content="website">
+    <!-- アプリのアイコン設定 -->
+    <link rel="icon" href="data:image/png;base64,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" type="image/png">
+    <link rel="apple-touch-icon" href="data:image/png;base64,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">
+    <!-- PWA 用 Web App Manifest (Data URI) -->
+    <link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22%E8%81%B7%E4%BA%BA%E5%88%A9%E7%9B%8A%E8%A8%88%E7%AE%97%E3%83%84%E3%83%BC%E3%83%AB%22%2C%22short_name%22%3A%22%E8%81%B7%E4%BA%BA%E7%9B%8A%E8%A8%88%E7%AE%97%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f172a%22%2C%22theme_color%22%3A%22%230f172a%22%7D">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body :class="t.body" class="min-h-screen p-4 sm:p-6 transition-colors duration-200" x-data="craftApp()">
+
+    <!-- ファイル読み込み用非表示インプット -->
+    <input type="file" x-ref="fileInput" @change="importData($event)" accept=".json" class="hidden">
+
+    <!-- 全アイテム実績一覧モーダル (強化ランキング版) -->
+    <div x-show="showSummaryModal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm" x-cloak>
+        <div @click.away="showSummaryModal = false" :class="t.card" class="rounded-2xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl border transition-colors duration-200">
+            
+            <!-- モーダルヘッダー -->
+            <div class="p-5 sm:p-6 border-b" :style="'border-color: currentColor'">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl sm:text-2xl font-black flex items-center gap-2" :class="t.accentText">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        実績一覧ランキング
+                    </h2>
+                    <button @click="showSummaryModal = false" class="p-2 rounded-full hover:bg-slate-500/20 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <!-- コントロールバー（絞り込み ＆ ソート） -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <div class="flex-1 flex items-center gap-2">
+                        <span class="text-xs font-bold opacity-70 whitespace-nowrap">絞り込み:</span>
+                        <select x-model="summaryCategoryFilter" :class="t.input" class="text-sm font-bold rounded-lg px-2 py-1.5 focus:outline-none border w-full sm:w-auto">
+                            <template x-for="cat in categories" :key="cat">
+                                <option :value="cat" x-text="cat"></option>
+                            </template>
+                        </select>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-bold opacity-70 whitespace-nowrap">並び順:</span>
+                        <select x-model="summarySortKey" :class="t.input" class="text-sm font-bold rounded-lg px-2 py-1.5 focus:outline-none border">
+                            <option value="profit">平均純利益</option>
+                            <option value="rate">大成功率</option>
+                            <option value="runs">実施回数</option>
+                            <option value="name">名前順</option>
+                        </select>
+                        <button @click="summarySortOrder = summarySortOrder === 'desc' ? 'asc' : 'desc'" :class="t.subCard" class="px-2 py-1.5 rounded-lg border flex items-center justify-center transition" title="昇順/降順を切り替え">
+                            <!-- 降順アイコン (↓) -->
+                            <svg x-show="summarySortOrder === 'desc'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/></svg>
+                            <!-- 昇順アイコン (↑) -->
+                            <svg x-show="summarySortOrder === 'asc'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ランキングリスト（スクロール領域） -->
+            <div class="p-5 sm:p-6 overflow-y-auto flex-1 space-y-3 bg-black/5">
+                <template x-if="sortedSummaryItems.length === 0">
+                    <div class="text-center py-8 opacity-60 font-bold text-sm">
+                        該当するアイテムがありません
+                    </div>
+                </template>
+
+                <template x-for="(item, index) in sortedSummaryItems" :key="item.id">
+                    <div :class="t.subCard" class="p-4 rounded-xl border flex flex-col sm:flex-row justify-between sm:items-center gap-4 transition hover:-translate-y-0.5 hover:shadow-md relative overflow-hidden group cursor-pointer" @click="selectItem(item.id); showSummaryModal = false;">
+                        
+                        <!-- 順位バッジ (ソート順が名前以外の時だけ表示) -->
+                        <div x-show="summarySortKey !== 'name'" class="absolute -left-6 -top-6 w-16 h-16 transform -rotate-45"
+                             :class="index === 0 ? 'bg-amber-400' : index === 1 ? 'bg-slate-300' : index === 2 ? 'bg-amber-600/80' : 'bg-slate-500/20'">
+                            <span class="absolute bottom-1 w-full text-center text-[10px] font-black"
+                                  :class="index < 3 ? 'text-black' : 'opacity-60'" x-text="index + 1"></span>
+                        </div>
+
+                        <!-- 左側：アイテム情報 -->
+                        <div class="pl-6 sm:pl-8">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="font-black text-base sm:text-lg tracking-tight group-hover:underline decoration-2" :class="t.accentText" x-text="item.name || '名称未設定'"></span>
+                                <span class="text-[10px] px-1.5 py-0.5 rounded border opacity-80 whitespace-nowrap" 
+                                      :class="item.calcMode === 'count' ? 'border-amber-400 text-amber-400' : 'border-blue-400 text-blue-400'" 
+                                      x-text="item.calcMode === 'count' ? '個数' : '星'"></span>
+                            </div>
+                            <div class="text-[11px] opacity-60 font-bold flex items-center gap-2">
+                                <span class="bg-black/10 px-1.5 rounded" x-text="item.category"></span>
+                                <span x-text="'追加日: ' + item.createdAt"></span>
+                            </div>
+                        </div>
+
+                        <!-- 右側：統計データ -->
+                        <div class="flex items-center justify-between sm:justify-end gap-6 sm:w-1/2">
+                            <!-- 回数と大成功率 -->
+                            <div class="text-right">
+                                <div class="text-xs opacity-75 mb-0.5">実績</div>
+                                <div class="text-sm font-bold font-mono">
+                                    <span x-text="formatNumber(item._runs) + '回'"></span>
+                                </div>
+                                <div class="text-xs font-black text-emerald-400 font-mono" x-text="(item._calcRate * 100).toFixed(1) + '%'"></div>
+                            </div>
+                            
+                            <!-- 1回平均純利益 (メイン指標) -->
+                            <div class="text-right pl-4 border-l" :style="'border-color: currentColor'">
+                                <div class="text-[10px] opacity-75 font-bold mb-0.5">1回あたり平均利益</div>
+                                <div class="text-lg sm:text-xl font-black font-mono tracking-tighter" 
+                                     :class="item._averageProfit > 0 ? 'text-amber-400' : item._averageProfit < 0 ? 'text-red-400' : 'opacity-70'">
+                                    <span x-text="item._averageProfit > 0 ? '+' : ''"></span><span x-text="formatNumber(item._averageProfit)"></span>
+                                    <span class="text-xs font-bold opacity-60">G</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            
+            <!-- モーダルフッター -->
+            <div class="p-4 border-t text-center text-[10px] opacity-60" :style="'border-color: currentColor'">
+                ※「1回あたり平均利益」は、実績回数と現在の原価・バザー価格から算出した期待値です。<br>
+                リストのアイテムをタップすると、そのアイテムを選択して画面を閉じます。
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto space-y-6">
+        
+        <!-- ヘッダーエリア -->
+        <header :class="t.header" class="border rounded-2xl p-6 shadow-xl space-y-6 transition-colors duration-200">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div class="shrink-0">
+                    <h1 class="text-xl sm:text-2xl md:text-3xl font-black tracking-wide leading-tight flex flex-col items-start gap-1">
+                        <span class="whitespace-nowrap">職人利益計算ツール</span>
+                        <a href="https://www.youtube.com/@%E3%81%BF%E3%81%99%E3%81%A8games" target="_blank" rel="noopener noreferrer" :class="t.accentText" class="text-base sm:text-lg md:text-xl font-bold hover:underline transition whitespace-nowrap">by みすとgames</a>
+                    </h1>
+                </div>
+                <div class="flex flex-wrap items-center gap-2.5 w-full md:w-auto justify-start md:justify-end">
+                    
+                    <!-- ホーム画面に追加ボタン ＆ 補足案内 -->
+                    <div class="relative group">
+                        <button @click="installApp()" :class="t.subCard" class="border px-3 py-1.5 rounded-xl text-xs font-medium transition hover:scale-105 flex items-center gap-1.5 text-emerald-400 border-emerald-500/40 bg-emerald-950/20 shadow-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                            <span>ホームに追加</span>
+                        </button>
+                        <!-- ツールチップ案内 -->
+                        <div class="hidden group-hover:block absolute right-0 top-full mt-2 w-72 p-3 bg-slate-900/95 text-slate-200 text-[11px] rounded-xl border border-slate-700 shadow-2xl z-40 leading-relaxed pointer-events-none backdrop-blur-sm">
+                            <div class="font-bold text-amber-300 mb-1 flex items-center gap-1">
+                                💡 アプリの更新・追加について
+                            </div>
+                            アップデートがあった場合は、新しくホーム画面に追加して起動してから古い方のアイコンを削除してください。<br>
+                            <span class="text-emerald-400 font-semibold">（作成したデータは自動で引き継がれます）</span>
+                        </div>
+                    </div>
+
+                    <!-- バックアップ＆復元ボタン -->
+                    <button @click="exportData()" :class="t.subCard" class="border px-3 py-1.5 rounded-xl text-xs font-medium transition hover:scale-105 flex items-center gap-1 text-cyan-300 border-cyan-500/40 bg-cyan-950/20 shadow-sm" title="データをファイルに保存">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+                        <span>バックアップ</span>
+                    </button>
+                    <button @click="$refs.fileInput.click()" :class="t.subCard" class="border px-3 py-1.5 rounded-xl text-xs font-medium transition hover:scale-105 flex items-center gap-1 text-amber-300 border-amber-500/40 bg-amber-950/20 shadow-sm" title="ファイルからデータを上書き復元">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                        <span>復元</span>
+                    </button>
+
+                    <!-- 実績一覧ボタン -->
+                    <button @click="showSummaryModal = true" :class="t.subCard" class="border px-3 py-1.5 rounded-xl text-xs font-medium transition hover:scale-105">
+                        実績一覧
+                    </button>
+
+                    <!-- 背景ベースカラー選択 -->
+                    <div :class="t.subCard" class="border px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs">
+                        <span class="opacity-75">背景:</span>
+                        <select x-model="currentBase" @change="touchItem()" class="bg-transparent font-bold focus:outline-none cursor-pointer">
+                            <option value="black" class="bg-slate-900 text-white">黒ベース</option>
+                            <option value="white" class="bg-white text-slate-900">白ベース</option>
+                        </select>
+                    </div>
+
+                    <!-- 小窓・文字カラー選択 -->
+                    <div :class="t.subCard" class="border px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs">
+                        <span class="opacity-75">カラー:</span>
+                        <select x-model="currentAccent" @change="touchItem()" class="bg-transparent font-bold focus:outline-none cursor-pointer">
+                            <option value="white" class="bg-slate-900 text-white">白</option>
+                            <option value="black" class="bg-slate-900 text-white">黒</option>
+                            <option value="red" class="bg-slate-900 text-white">赤</option>
+                            <option value="blue" class="bg-slate-900 text-white">青</option>
+                            <option value="yellow" class="bg-slate-900 text-white">黄色</option>
+                            <option value="green" class="bg-slate-900 text-white">緑</option>
+                            <option value="pink" class="bg-slate-900 text-white">ピンク</option>
+                        </select>
+                    </div>
+
+                    <!-- 戻る・進むボタン -->
+                    <div class="flex items-center gap-1">
+                        <button @click="undo()" :disabled="historyStack.length === 0" :class="t.subCard" class="disabled:opacity-40 disabled:cursor-not-allowed px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1 border" title="一つ戻る">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                            <span>戻る</span>
+                        </button>
+                        <button @click="redo()" :disabled="futureStack.length === 0" :class="t.subCard" class="disabled:opacity-40 disabled:cursor-not-allowed px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1 border" title="一つ進む">
+                            <span>進む</span>
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </button>
+                    </div>
+
+                    <div :class="t.subCard" class="border px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs">
+                        <span class="opacity-75">バザー手数料:</span>
+                        <input type="text" inputmode="numeric" x-model.number="currentTaxRate" :class="t.input" class="w-12 text-center font-bold rounded px-1 py-0.5 border focus:outline-none">%
+                    </div>
+                    <button @click="resetData()" :class="t.subCard" class="border px-3 py-1.5 rounded-xl text-xs font-medium transition">初期化</button>
+                </div>
+            </div>
+
+            <!-- カテゴリー ＆ アイテム選択エリア -->
+            <div class="space-y-4 pt-4 border-t opacity-90">
+                <!-- カテゴリー選択 -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+                    <span class="text-sm font-bold shrink-0 min-w-[90px]" :class="t.accentText">カテゴリー:</span>
+                    <div class="flex items-center gap-2 overflow-x-auto w-full pb-1">
+                        <template x-for="cat in categories" :key="cat">
+                            <div class="flex items-center border rounded-xl px-2 py-1 transition shrink-0"
+                                 :class="currentCategory === cat ? t.badgeBg : t.subCard">
+                                <button @click="currentCategory = cat" 
+                                        class="text-xs font-bold px-2 py-1 transition"
+                                        :class="currentCategory === cat ? '' : 'opacity-75 hover:opacity-100'"
+                                        x-text="cat">
+                                </button>
+                                <button @click="removeCategory(cat)" x-show="cat !== 'すべて'" class="ml-1 opacity-60 hover:opacity-100 p-0.5" title="カテゴリー削除">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                </button>
+                            </div>
+                        </template>
+                        <button @click="addCategory()" :class="t.accentBtn" class="px-3 py-1.5 rounded-xl text-xs font-semibold transition shrink-0 shadow-sm">
+                            ＋ カテゴリー追加
+                        </button>
+                    </div>
+                </div>
+
+                <!-- アイテム選択 -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+                    <span class="text-sm font-bold shrink-0 min-w-[90px]" :class="t.accentText">アイテム:</span>
+                    <div class="flex items-center gap-2 overflow-x-auto w-full pb-1">
+                        <template x-for="item in filteredItems" :key="item.id">
+                            <div class="flex items-center border rounded-xl px-3.5 py-1.5 cursor-pointer transition shrink-0 group"
+                                 :class="currentItem && currentItem.id === item.id ? t.badgeBg : t.subCard"
+                                 @click="selectItem(item.id)">
+                                <span x-text="item.name || 'アイテム名'" class="text-xs font-bold truncate max-w-[140px]"></span>
+                                <span class="ml-1 text-[9px] px-1 rounded bg-black/20 opacity-75" x-text="item.calcMode === 'count' ? '個数' : '星'"></span>
+                                <button @click.stop="removeItem(item.id)" class="ml-2 opacity-60 hover:opacity-100 p-0.5" x-show="items.length > 1" title="アイテムを削除">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                </button>
+                            </div>
+                        </template>
+                        <button @click="addItem()" :class="t.accentBtn" class="px-3 py-1.5 rounded-xl text-xs font-semibold transition shrink-0 shadow-sm">
+                            ＋ アイテム追加
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- メイングリッド -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6" x-show="currentItem">
+
+            <!-- アイテム名編集 ＆ カテゴリー変更・計算モード枠 -->
+            <div class="lg:col-span-12 bg-gradient-to-r from-blue-900 to-indigo-900 border border-blue-500/40 rounded-2xl p-6 shadow-xl space-y-4 text-white">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <div class="w-full md:w-2/3">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-xs font-bold text-blue-300 tracking-wider uppercase">選択中のアイテム名</span>
+                            <div class="text-blue-200/80 text-xs flex items-center gap-3">
+                                <span>追加日: <strong class="text-white" x-text="currentItem.createdAt || '----/--/--'"></strong></span>
+                                <span>更新日: <strong class="text-white" x-text="currentItem.updatedAt || '----/--/--'"></strong></span>
+                            </div>
+                        </div>
+                        <input type="text" x-model="currentItem.name" @change="touchItem()" class="text-2xl sm:text-3xl font-extrabold bg-blue-950/40 border border-blue-400/30 rounded-xl px-4 py-2 text-white placeholder-blue-300/50 focus:border-indigo-400 focus:outline-none transition w-full shadow-inner" placeholder="アイテム名を入力" inputmode="text">
+                    </div>
+                    <div class="w-full md:w-1/3">
+                        <label class="block text-xs font-bold text-blue-300 tracking-wider uppercase mb-1">所属カテゴリー変更</label>
+                        <select x-model="currentItem.category" @change="touchItem()" class="w-full bg-blue-950/60 border border-blue-400/30 rounded-xl px-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-indigo-400 shadow-inner">
+                            <template x-for="cat in categories.filter(c => c !== 'すべて')" :key="cat">
+                                <option :value="cat" x-text="cat" :selected="cat === currentItem.category"></option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 計算モード切り替え -->
+                <div class="pt-3 border-t border-blue-400/30 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs font-bold text-blue-300 tracking-wider uppercase">計算モード:</span>
+                        <div class="inline-flex rounded-xl p-1 bg-blue-950/80 border border-blue-400/30">
+                            <button @click="currentItem.calcMode = 'star'; touchItem()" 
+                                    :class="currentItem.calcMode !== 'count' ? 'bg-blue-600 text-white font-bold shadow-md' : 'text-blue-300 hover:text-white'" 
+                                    class="px-3.5 py-1.5 text-xs rounded-lg transition flex items-center gap-1.5">
+                                <span>★ 星計算（品質）</span>
+                            </button>
+                            <button @click="currentItem.calcMode = 'count'; touchItem()" 
+                                    :class="currentItem.calcMode === 'count' ? 'bg-blue-600 text-white font-bold shadow-md' : 'text-blue-300 hover:text-white'" 
+                                    class="px-3.5 py-1.5 text-xs rounded-lg transition flex items-center gap-1.5">
+                                <span>📦 個数計算（生産量）</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-xs text-blue-200/70">
+                        <span x-show="currentItem.calcMode !== 'count'">※ 1回の作成で「星3」か「星2以下」かが完成する商材用</span>
+                        <span x-show="currentItem.calcMode === 'count'">※ 道具職人の釘・オーブや料理など、星によって「完成個数」が変わる商材用</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ★ スマホ専用 モバイルタブナビゲーション ★ (PC画面では非表示) -->
+            <div class="lg:col-span-12 lg:hidden grid grid-cols-4 gap-2">
+                <button @click="mobileTab = 'material'" :class="mobileTab === 'material' ? t.accentBtn : t.subCard" class="p-2 rounded-xl font-bold border transition flex flex-col items-center justify-center gap-1 shadow-sm">
+                    <span class="text-base sm:text-lg leading-none">⚒️</span>
+                    <span class="text-[9px] sm:text-[11px] whitespace-nowrap">原価管理</span>
+                </button>
+                <button @click="mobileTab = 'record'" :class="mobileTab === 'record' ? t.accentBtn : t.subCard" class="p-2 rounded-xl font-bold border transition flex flex-col items-center justify-center gap-1 shadow-sm">
+                    <span class="text-base sm:text-lg leading-none">📈</span>
+                    <span class="text-[9px] sm:text-[11px] whitespace-nowrap">実績記録</span>
+                </button>
+                <button @click="mobileTab = 'profit'" :class="mobileTab === 'profit' ? t.accentBtn : t.subCard" class="p-2 rounded-xl font-bold border transition flex flex-col items-center justify-center gap-1 shadow-sm">
+                    <span class="text-base sm:text-lg leading-none">💰</span>
+                    <span class="text-[9px] sm:text-[11px] whitespace-nowrap">販売・利益</span>
+                </button>
+                <button @click="mobileTab = 'memo'" :class="mobileTab === 'memo' ? t.accentBtn : t.subCard" class="p-2 rounded-xl font-bold border transition flex flex-col items-center justify-center gap-1 shadow-sm">
+                    <span class="text-base sm:text-lg leading-none">📝</span>
+                    <span class="text-[9px] sm:text-[11px] whitespace-nowrap">メモ設定</span>
+                </button>
+            </div>
+
+            <!-- マス設定 ＆ フリーメモ エリア -->
+            <div class="lg:col-span-12" :class="[t.card, mobileTab === 'memo' ? 'block' : 'hidden lg:block']" class="border rounded-2xl p-6 shadow-xl transition-colors duration-200">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- 左側：マス設定 -->
+                    <div>
+                        <div class="flex flex-wrap items-center gap-4">
+                            <h2 class="text-sm font-bold flex items-center gap-2" :class="t.accentText">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                                マスを追加する（数値メモ用）
+                            </h2>
+                            <select x-model="currentItem.gridPattern" @change="touchItem()" :class="t.input" class="rounded-lg px-3 py-1.5 focus:outline-none font-bold text-sm border cursor-pointer">
+                                <option value="0">表示しない</option>
+                                <optgroup label="2マス">
+                                    <option value="2-1">2マス</option>
+                                </optgroup>
+                                <optgroup label="3マス">
+                                    <option value="3-1">3マス</option>
+                                </optgroup>
+                                <optgroup label="4マス (2パターン)">
+                                    <option value="4-1">パターン1 (縦一列)</option>
+                                    <option value="4-2">パターン2 (2x2)</option>
+                                </optgroup>
+                                <optgroup label="5マス (3パターン)">
+                                    <option value="5-1">パターン1</option>
+                                    <option value="5-2">パターン2</option>
+                                    <option value="5-3">パターン3</option>
+                                </optgroup>
+                                <optgroup label="6マス (2パターン)">
+                                    <option value="6-1">パターン1</option>
+                                    <option value="6-2">パターン2</option>
+                                </optgroup>
+                                <optgroup label="7マス (1パターン)">
+                                    <option value="7-1">7マス</option>
+                                </optgroup>
+                                <optgroup label="8マス (1パターン)">
+                                    <option value="8-1">8マス</option>
+                                </optgroup>
+                                <optgroup label="9マス (1パターン)">
+                                    <option value="9-1">9マス (3×3)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <!-- マスの表示部分 -->
+                        <div x-show="currentItem.gridPattern !== '0'" class="mt-4 overflow-x-auto">
+                            <div class="inline-flex flex-col">
+                                <template x-for="(row, rIdx) in getGridRows(currentItem.gridPattern)" :key="currentItem.id + '-' + currentItem.gridPattern + '-r' + rIdx">
+                                    <div class="flex gap-3" :class="rIdx > 0 ? '-mt-[1px]' : ''">
+                                        <template x-for="colLabel in row" :key="currentItem.id + '-' + currentItem.gridPattern + '-c' + colLabel">
+                                            <div class="w-32 sm:w-40 flex" :class="!colLabel ? 'invisible' : ''">
+                                                <template x-if="colLabel">
+                                                    <div class="flex w-full border" :style="'border-color: currentColor'">
+                                                        <div class="w-8 flex items-center justify-center text-sm font-bold border-r" :style="'border-color: currentColor'" :class="t.subCard" x-text="colLabel"></div>
+                                                        <input type="text" 
+                                                               :value="currentItem.gridData[colLabel] || ''" 
+                                                               @input="updateGridData(colLabel, $event.target.value)" 
+                                                               class="flex-1 w-full px-2 py-1.5 text-sm focus:outline-none bg-transparent font-medium" placeholder="">
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右側：フリーメモ（自由ドラッグ伸縮対応） -->
+                    <div class="flex flex-col space-y-2">
+                        <h2 class="text-sm font-bold flex items-center gap-2" :class="t.accentText">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            フリーメモ
+                        </h2>
+                        <textarea x-model="currentItem.memo" @change="touchItem()" :class="t.input" class="w-full min-h-[140px] rounded-xl p-3 text-sm focus:outline-none border resize-y shadow-inner block" placeholder="ここに自由にメモを書き込めます..."></textarea>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 左側（PC）：素材コスト管理 ＆ 実績記録 -->
+            <div class="lg:col-span-7 space-y-6" :class="(mobileTab === 'material' || mobileTab === 'record') ? 'block' : 'hidden lg:block'">
+                
+                <!-- 素材コスト管理 カード -->
+                <div :class="[t.card, mobileTab === 'material' ? 'block' : 'hidden lg:block']" class="border rounded-2xl p-6 shadow-xl transition-colors duration-200">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-bold flex items-baseline gap-2 flex-wrap" :class="t.accentText">
+                            <span class="flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 00-2-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                                素材・原価コスト
+                            </span>
+                            <span class="text-[11px] font-normal opacity-75">（素材名が完全一致で全アイテムの同名の単価が連動します）</span>
+                        </h2>
+                        <button @click="addMaterial()" :class="t.accentBtn" class="text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow-sm shrink-0">
+                            <span>＋ 素材を追加</span>
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse min-w-[500px]">
+                            <thead>
+                                <tr class="border-b opacity-60 text-xs uppercase tracking-wider" :style="'border-color: currentColor'">
+                                    <th class="py-2 px-2 min-w-[130px]">素材名</th>
+                                    <th class="py-2 px-2 text-right min-w-[100px]">単価 (G)</th>
+                                    <th class="py-2 px-2 text-center w-16">計算</th>
+                                    <th class="py-2 px-2 text-right w-20">個数/回数</th>
+                                    <th class="py-2 px-2 text-right min-w-[90px]">合計 (G)</th>
+                                    <th class="py-2 px-1 text-center w-10"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y opacity-90 text-sm" :style="'divide-color: currentColor'">
+                                <template x-for="(mat, mIndex) in currentItem.materials" :key="mIndex">
+                                    <tr class="transition hover:opacity-100">
+                                        <td class="py-2.5 px-2">
+                                            <input type="text" x-model="mat.name" @change="updateMatName(mat)" :class="t.input" class="rounded px-2.5 py-1.5 w-full focus:outline-none text-sm border" placeholder="素材名" inputmode="text">
+                                        </td>
+                                        <td class="py-2.5 px-2 text-right">
+                                            <input type="text" inputmode="numeric" x-model.number="mat.price" @change="updateMatPrice(mat)" :class="t.input" class="rounded px-2.5 py-1.5 w-full text-right focus:outline-none text-sm border">
+                                        </td>
+                                        <td class="py-2.5 px-2 text-center">
+                                            <select x-model="mat.calcType" @change="touchItem()" :class="t.input" class="rounded px-1.5 py-1.5 text-xs font-bold focus:outline-none w-full text-center border">
+                                                <option value="multiply">×</option>
+                                                <option value="divide">÷</option>
+                                            </select>
+                                        </td>
+                                        <td class="py-2.5 px-2 text-right">
+                                            <input type="text" inputmode="numeric" x-model.number="mat.count" @change="touchItem()" :class="t.input" class="rounded px-2.5 py-1.5 w-full text-right focus:outline-none text-sm border">
+                                        </td>
+                                        <td class="py-2.5 px-2 text-right font-medium whitespace-nowrap" x-text="formatNumber(calcMatCost(mat))"></td>
+                                        <td class="py-2.5 px-1 text-center">
+                                            <button @click="removeMaterial(mIndex)" class="opacity-60 hover:opacity-100 p-1.5 transition text-red-400" title="この素材を削除">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 原価サマリーカード -->
+                    <div class="grid grid-cols-2 gap-4 mt-6 pt-4 border-t" :style="'border-color: currentColor'">
+                        <div :class="t.subCard" class="p-4 rounded-xl border">
+                            <div class="text-xs opacity-75">1回原価</div>
+                            <div class="text-xl font-bold mt-1" x-text="formatNumber(costPerRun) + ' G'"></div>
+                        </div>
+                        <div :class="t.subCard" class="p-4 rounded-xl border">
+                            <div class="text-xs opacity-75">30回原価</div>
+                            <div class="text-xl font-bold mt-1" :class="t.accentText" x-text="formatNumber(costPerRun * 30) + ' G'"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 実績の記録・蓄積シミュレーション カード -->
+                <div :class="[t.card, mobileTab === 'record' ? 'block' : 'hidden lg:block']" class="border rounded-2xl p-6 shadow-xl space-y-4 transition-colors duration-200">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-lg font-bold flex items-center gap-2 text-emerald-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                            実績の記録・蓄積シミュレーション
+                        </h2>
+                        <button @click="resetManualRecord()" :class="t.subCard" class="text-xs px-2.5 py-1 rounded-lg transition border">累計リセット</button>
+                    </div>
+
+                    <!-- 今回の入力フォーム（モードに応じて切替） -->
+                    <div :class="t.subCard" class="p-4 rounded-xl border space-y-4">
+                        
+                        <!-- 星計算モード時の入力フォーム -->
+                        <div x-show="currentItem.calcMode !== 'count'" class="space-y-3">
+                            <div class="text-xs font-bold text-emerald-300">今回作成した結果を入力して追加</div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs opacity-75 mb-1">実施回数</label>
+                                    <input type="text" inputmode="numeric" x-model.number="currentItem.inputRuns" @change="touchItem()" :class="t.input" class="rounded-lg px-3 py-2 text-right focus:outline-none font-semibold text-sm border w-full">
+                                </div>
+                                <div>
+                                    <label class="block text-xs opacity-75 mb-1">大成功（星3）数</label>
+                                    <input type="text" inputmode="numeric" x-model.number="currentItem.inputSuccess" @change="touchItem()" :class="t.input" class="rounded-lg px-3 py-2 text-right focus:outline-none font-semibold text-sm border w-full">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 個数計算モード時：カウント・入力表 UI -->
+                        <div x-show="currentItem.calcMode === 'count'" class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <div class="text-xs font-bold text-amber-300">【 個数計算用 カウント・自動計算表 】</div>
+                                <button @click="resetCountTable()" class="text-[11px] text-red-400 hover:underline">入力クリア</button>
+                            </div>
+                            
+                            <div class="border rounded-xl overflow-hidden border-slate-700/80 shadow-md">
+                                <div class="grid grid-cols-4 divide-x divide-slate-700 bg-slate-800/90 text-center border-b border-slate-700">
+                                    <!-- 星3 -->
+                                    <div class="p-2 flex flex-col items-center justify-between cursor-pointer hover:bg-slate-700/50 transition select-none" @click="incrementCount(3)">
+                                        <div class="text-xs font-bold text-amber-400">星３</div>
+                                        <div class="text-[11px] opacity-80" x-text="'(' + (currentItem.yield3 || 10) + '個)'"></div>
+                                        <div class="mt-1.5 flex items-center gap-1" @click.stop>
+                                            <button @click="decrementCount(3)" class="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 text-xs font-bold">-</button>
+                                            <input type="text" inputmode="numeric" x-model.number="currentItem.inputCount3" @change="touchItem()" class="w-9 text-center text-xs font-bold rounded bg-slate-900 border border-slate-600 py-0.5">
+                                            <button @click="incrementCount(3)" class="w-5 h-5 rounded bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold">+</button>
+                                        </div>
+                                    </div>
+                                    <!-- 星2 -->
+                                    <div class="p-2 flex flex-col items-center justify-between cursor-pointer hover:bg-slate-700/50 transition select-none" @click="incrementCount(2)">
+                                        <div class="text-xs font-bold text-slate-200">星２</div>
+                                        <div class="text-[11px] opacity-80" x-text="'(' + (currentItem.yield2 || 3) + '個)'"></div>
+                                        <div class="mt-1.5 flex items-center gap-1" @click.stop>
+                                            <button @click="decrementCount(2)" class="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 text-xs font-bold">-</button>
+                                            <input type="text" inputmode="numeric" x-model.number="currentItem.inputCount2" @change="touchItem()" class="w-9 text-center text-xs font-bold rounded bg-slate-900 border border-slate-600 py-0.5">
+                                            <button @click="incrementCount(2)" class="w-5 h-5 rounded bg-slate-600 hover:bg-slate-500 text-white text-xs font-bold">+</button>
+                                        </div>
+                                    </div>
+                                    <!-- 星1 -->
+                                    <div class="p-2 flex flex-col items-center justify-between cursor-pointer hover:bg-slate-700/50 transition select-none" @click="incrementCount(1)">
+                                        <div class="text-xs font-bold text-slate-300">星１</div>
+                                        <div class="text-[11px] opacity-80" x-text="'(' + (currentItem.yield1 || 2) + '個)'"></div>
+                                        <div class="mt-1.5 flex items-center gap-1" @click.stop>
+                                            <button @click="decrementCount(1)" class="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 text-xs font-bold">-</button>
+                                            <input type="text" inputmode="numeric" x-model.number="currentItem.inputCount1" @change="touchItem()" class="w-9 text-center text-xs font-bold rounded bg-slate-900 border border-slate-600 py-0.5">
+                                            <button @click="incrementCount(1)" class="w-5 h-5 rounded bg-slate-600 hover:bg-slate-500 text-white text-xs font-bold">+</button>
+                                        </div>
+                                    </div>
+                                    <!-- 星0 -->
+                                    <div class="p-2 flex flex-col items-center justify-between cursor-pointer hover:bg-slate-700/50 transition select-none" @click="incrementCount(0)">
+                                        <div class="text-xs font-bold text-slate-400">星０</div>
+                                        <div class="text-[11px] opacity-80" x-text="'(' + (currentItem.yield0 || 1) + '個)'"></div>
+                                        <div class="mt-1.5 flex items-center gap-1" @click.stop>
+                                            <button @click="decrementCount(0)" class="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 text-xs font-bold">-</button>
+                                            <input type="text" inputmode="numeric" x-model.number="currentItem.inputCount0" @change="touchItem()" class="w-9 text-center text-xs font-bold rounded bg-slate-900 border border-slate-600 py-0.5">
+                                            <button @click="incrementCount(0)" class="w-5 h-5 rounded bg-slate-600 hover:bg-slate-500 text-white text-xs font-bold">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 2行目：合計個数 ＆ 大成功率 -->
+                                <div class="grid grid-cols-4 divide-x divide-slate-700 bg-slate-950/80 text-center py-2">
+                                    <div class="text-xs font-bold flex items-center justify-center opacity-80">合計個数</div>
+                                    <div class="text-sm font-black text-amber-400 flex items-center justify-center" x-text="formatNumber(countTableTotalYield)"></div>
+                                    <div class="text-xs font-bold flex items-center justify-center opacity-80">大成功率</div>
+                                    <div class="text-sm font-black text-emerald-400 flex items-center justify-center" x-text="countTableSuccessRate + '%'"></div>
+                                </div>
+                            </div>
+                            <p class="text-[10px] opacity-60">※マス部分をタップするか ＋/－ ボタンでポチポチ記録できます。</p>
+                        </div>
+
+                        <!-- 蓄積前のプレビュー表示 -->
+                        <div class="bg-emerald-950/30 border border-emerald-500/30 p-3 rounded-lg space-y-2">
+                            <div class="text-[11px] text-emerald-300 font-medium">今回入力されたデータ（今回分）の内訳：</div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+                                <div :class="t.subCard" class="p-2 rounded border">
+                                    <div class="text-[10px] opacity-75">今回 大成功率</div>
+                                    <div class="font-bold text-emerald-400 mt-0.5" x-text="previewInputRate + '%'"></div>
+                                </div>
+                                <div :class="t.subCard" class="p-2 rounded border">
+                                    <div class="text-[10px] opacity-75">
+                                        <span x-text="currentItem.calcMode === 'count' ? '今回 獲得個数' : '今回 実施回数'"></span>
+                                    </div>
+                                    <div class="font-bold mt-0.5" x-text="currentItem.calcMode === 'count' ? formatNumber(previewInputYield) + '個 (' + formatNumber(previewInputRuns) + '回)' : formatNumber(currentItem.inputRuns || 0) + '回'"></div>
+                                </div>
+                                <div :class="t.subCard" class="p-2 rounded border">
+                                    <div class="text-[10px] opacity-75">今回 大成功数</div>
+                                    <div class="font-bold mt-0.5" x-text="formatNumber(previewInputSuccess) + '回'"></div>
+                                </div>
+                                <div :class="t.subCard" class="p-2 rounded border">
+                                    <div class="text-[10px] opacity-75">今回 純利益</div>
+                                    <div class="font-bold mt-0.5" :class="previewInputProfit >= 0 ? 'text-emerald-400' : 'text-red-400'" x-text="formatNumber(previewInputProfit) + 'G'"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button @click="addManualRecord()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-2.5 rounded-lg transition shadow-sm flex items-center justify-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                            <span>実績に蓄積する</span>
+                        </button>
+                    </div>
+
+                    <!-- 累計実績サマリー -->
+                    <div class="space-y-3">
+                        <div class="text-xs font-bold opacity-80">【 累計実績データ 】</div>
+                        <div :class="t.subCard" class="p-4 rounded-xl border grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                            <div>
+                                <div class="text-xs opacity-75">総合 大成功率</div>
+                                <div class="text-lg font-bold text-emerald-400 mt-1" x-text="manualRate + '%'"></div>
+                            </div>
+                            <!-- 平均獲得個数（または累計実施回数） -->
+                            <div>
+                                <div class="text-xs opacity-75">
+                                    <span x-text="currentItem.calcMode === 'count' ? '平均 獲得個数' : '累計 実施回数'"></span>
+                                </div>
+                                <div class="text-lg font-bold mt-1" 
+                                     x-text="currentItem.calcMode === 'count' ? manualAverageYield + ' 個/回' : formatNumber(currentItem.totalRuns) + ' 回'"></div>
+                                <div class="text-[10px] opacity-60 mt-0.5" x-show="currentItem.calcMode === 'count'">
+                                    (計 <span x-text="formatNumber(manualTotalYield)"></span> 個 / <span x-text="formatNumber(currentItem.totalRuns)"></span> 回)
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-xs opacity-75">累計 大成功数</div>
+                                <div class="text-lg font-bold mt-1" x-text="formatNumber(currentItem.totalSuccess) + ' 回'"></div>
+                            </div>
+                            <div>
+                                <div class="text-xs opacity-75">累計 純利益</div>
+                                <div class="text-lg font-bold mt-1" :class="manualProfit >= 0 ? 'text-emerald-400' : 'text-red-400'" x-text="formatNumber(manualProfit) + ' G'"></div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-center">
+                            <div :class="t.subCard" class="p-3 rounded-xl border">
+                                <div class="text-xs opacity-75">累計総売上</div>
+                                <div class="text-sm font-bold mt-0.5" x-text="formatNumber(manualRevenue) + ' G'"></div>
+                            </div>
+                            <div :class="t.subCard" class="p-3 rounded-xl border">
+                                <div class="text-xs opacity-75">累計総原価</div>
+                                <div class="text-sm font-bold mt-0.5" x-text="formatNumber(manualTotalCost) + ' G'"></div>
+                            </div>
+                        </div>
+                        <p class="text-[10px] opacity-60 text-right mt-1">※累計総原価は「現在の1回原価」を基準に計算されます。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右側（PC）：バザー価格 & 成功率別シミュレーション -->
+            <div class="lg:col-span-5 space-y-6" :class="mobileTab === 'profit' ? 'block' : 'hidden lg:block'">
+                <!-- 販売価格設定 -->
+                <div :class="t.card" class="border rounded-2xl p-6 shadow-xl space-y-4 transition-colors duration-200">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-lg font-bold flex items-center gap-2 text-amber-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            バザー価格 ＆ 完成個数設定
+                        </h2>
+                    </div>
+
+                    <!-- 個数計算モード時の星ごとの作成個数設定 -->
+                    <div x-show="currentItem.calcMode === 'count'" class="bg-amber-950/20 border border-amber-500/30 p-3.5 rounded-xl space-y-2">
+                        <div class="text-xs font-bold text-amber-300 flex items-center justify-between">
+                            <span>📦 1回作成時の完成個数設定</span>
+                            <span class="text-[10px] opacity-75">（各星で出来上がる個数）</span>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                            <div>
+                                <label class="block text-[11px] opacity-75 mb-1 text-center">星3 (個)</label>
+                                <input type="text" inputmode="numeric" x-model.number="currentItem.yield3" @change="touchItem()" :class="t.input" class="rounded-lg px-2 py-1 text-center font-bold text-xs border w-full">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] opacity-75 mb-1 text-center">星2 (個)</label>
+                                <input type="text" inputmode="numeric" x-model.number="currentItem.yield2" @change="touchItem()" :class="t.input" class="rounded-lg px-2 py-1 text-center font-bold text-xs border w-full">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] opacity-75 mb-1 text-center">星1 (個)</label>
+                                <input type="text" inputmode="numeric" x-model.number="currentItem.yield1" @change="touchItem()" :class="t.input" class="rounded-lg px-2 py-1 text-center font-bold text-xs border w-full">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] opacity-75 mb-1 text-center">星0 (個)</label>
+                                <input type="text" inputmode="numeric" x-model.number="currentItem.yield0" @change="touchItem()" :class="t.input" class="rounded-lg px-2 py-1 text-center font-bold text-xs border w-full">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- バザー単価設定 -->
+                    <!-- ★修正: 個数計算の時は「星2 バザー最安値」を隠し、単価1つで全て計算する -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs opacity-75 mb-1">
+                                <span x-text="currentItem.calcMode === 'count' ? '1個あたりの単価 (G)' : '星3 バザー最安値 (G)'"></span>
+                            </label>
+                            <input type="text" inputmode="numeric" x-model.number="currentItem.bazaarPrice" @change="touchItem()" :class="t.input" class="rounded-lg px-3 py-2 text-right focus:outline-none font-bold text-lg text-amber-400 border w-full">
+                        </div>
+                        <div x-show="currentItem.calcMode !== 'count'">
+                            <label class="block text-xs opacity-75 mb-1">
+                                <span>星2 バザー最安値 (G)</span>
+                            </label>
+                            <input type="text" inputmode="numeric" x-model.number="currentItem.bazaarPrice2" @change="touchItem()" :class="t.input" class="rounded-lg px-3 py-2 text-right focus:outline-none font-bold text-lg text-amber-400 border w-full">
+                        </div>
+                    </div>
+
+                    <!-- 手数料引き後手取り額プレビュー -->
+                    <!-- ★修正: 星2の手取りも bazaarPrice（1個の単価）を基準に表示 -->
+                    <div class="space-y-2 pt-2 border-t opacity-90" :style="'border-color: currentColor'">
+                        <div :class="t.subCard" class="text-xs flex justify-between p-2.5 rounded-lg border">
+                            <span class="opacity-75">
+                                <span x-text="currentItem.calcMode === 'count' ? '星3 1回作成時(' + (currentItem.yield3 || 10) + '個) 手取:' : '星3 手数料引後手取額:'"></span>
+                            </span>
+                            <span class="font-semibold" x-text="formatNumber(getOneSuccessRevenue(currentItem)) + ' G' + (currentItem.calcMode === 'count' ? ' (単価 ' + formatNumber(Math.floor(currentItem.bazaarPrice * (1 - currentTaxRate / 100))) + ' G)' : '')"></span>
+                        </div>
+                        <div :class="t.subCard" class="text-xs flex justify-between p-2.5 rounded-lg border">
+                            <span class="opacity-75">
+                                <span x-text="currentItem.calcMode === 'count' ? '星2 1回作成時(' + (currentItem.yield2 || 3) + '個) 手取:' : '星2 手数料引後手取額:'"></span>
+                            </span>
+                            <span class="font-semibold" x-text="formatNumber(getOneNormalRevenue(currentItem)) + ' G' + (currentItem.calcMode === 'count' ? ' (単価 ' + formatNumber(Math.floor(currentItem.bazaarPrice * (1 - currentTaxRate / 100))) + ' G)' : '')"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 30回成功率別利益マトリクス -->
+                <div :class="t.card" class="border rounded-2xl p-6 shadow-xl transition-colors duration-200">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-bold flex items-center gap-2 text-cyan-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            30回 成功率別 利益一覧
+                        </h2>
+                    </div>
+
+                    <div class="space-y-3">
+                        <template x-for="tier in successTiers" :key="tier.rate">
+                            <div :class="t.subCard" class="border p-3 rounded-xl flex items-center justify-between">
+                                <div>
+                                    <div class="text-xs opacity-75">
+                                        <span x-text="tier.rate"></span>
+                                        <span x-show="currentItem.calcMode !== 'count'" x-text="' （大成功' + tier.count + '回 / 失敗' + (30 - tier.count) + '回）'"></span>
+                                        <span x-show="currentItem.calcMode === 'count'" x-text="' （大成功' + tier.count + '回[' + (tier.count * (currentItem.yield3||10)) + '個] / 失敗' + (30 - tier.count) + '回[' + ((30 - tier.count) * (currentItem.yield2||3)) + '個] → 計' + calcTierYield(tier.count) + '個）'"></span>
+                                    </div>
+                                    <div class="text-sm font-bold" x-text="formatNumber(calcTierProfit(tier.count)) + ' G'"></div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs px-2.5 py-1 rounded-full font-semibold"
+                                          :class="calcTierProfit(tier.count) >= 0 ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-red-500/20 text-red-400 border border-red-500/30'"
+                                          x-text="calcTierProfit(tier.count) >= 0 ? '黒字' : '赤字'"></span>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- 損益分岐点 -->
+                    <div class="mt-6 pt-4 border-t" :style="'border-color: currentColor'">
+                        <div :class="t.subCard" class="border p-4 rounded-xl">
+                            <div class="text-xs font-medium opacity-80" :class="t.accentText">
+                                <span x-text="currentItem.calcMode === 'count' ? '30回中の損益分岐点（必要な合計作成個数）' : '30回中の損益分岐点（必要な大成功数）'"></span>
+                            </div>
+                            <div class="text-2xl font-black mt-1" :class="t.accentText" x-text="breakEvenCount + (currentItem.calcMode === 'count' ? ' 個' : ' 回')"></div>
+                            
+                            <div class="text-[11px] opacity-75 mt-1" x-show="currentItem.calcMode === 'count'">
+                                （30回で平均 約 <span x-text="breakEvenCount !== '達成不可' ? (parseFloat(breakEvenCount.replace(/,/g, '')) / 30).toFixed(1) : 0"></span> 個/回の作成でトントン）
+                            </div>
+                            <div class="text-[11px] opacity-75 mt-1" x-show="currentItem.calcMode !== 'count'">
+                                （30回中 約 <span x-text="breakEvenCount !== '達成不可' ? Math.round((breakEvenCount / 30) * 100) : 0"></span>% の大成功率でトントン）
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function craftApp() {
+            return {
+                mobileTab: 'material',
+                getTodayStr() {
+                    return new Date().toISOString().slice(0, 10).replace(/-/g, '/');
+                },
+                showSummaryModal: false,
+                
+                summarySortKey: 'profit', 
+                summarySortOrder: 'desc', 
+                summaryCategoryFilter: 'すべて',
+
+                currentCategory: 'すべて',
+                categories: ['すべて', '武器', '防具', '道具', '木工', '裁縫', '料理'],
+                currentId: 1,
+                currentTaxRate: 5,
+                currentBase: 'black',
+                currentAccent: 'blue',
+                historyStack: [],
+                futureStack: [],
+                isUndoRedo: false,
+                deferredPrompt: null,
+                successTiers: [
+                    { rate: '5割', count: 15 },
+                    { rate: '6割', count: 18 },
+                    { rate: '7割', count: 21 },
+                    { rate: '8割', count: 24 },
+                    { rate: '9割', count: 27 },
+                ],
+                items: [
+                    {
+                        id: 1,
+                        category: '武器',
+                        name: 'アイテム名',
+                        calcMode: 'star',
+                        yield3: 10, yield2: 3, yield1: 2, yield0: 1,
+                        inputCount3: 0, inputCount2: 0, inputCount1: 0, inputCount0: 0,
+                        bazaarPrice: 1000000,
+                        bazaarPrice2: 0,
+                        totalRuns: 0,
+                        totalSuccess: 0,
+                        totalYield: 0,
+                        inputRuns: 10,
+                        inputSuccess: 5,
+                        gridPattern: '0',
+                        gridData: {},
+                        memo: '',
+                        createdAt: '2026/08/09',
+                        updatedAt: '2026/08/09',
+                        materials: [
+                            { name: '素材1', price: 0, count: 1, calcType: 'multiply' },
+                            { name: '素材2', price: 0, count: 1, calcType: 'multiply' },
+                            { name: '素材3', price: 0, count: 1, calcType: 'multiply' },
+                            { name: '素材4', price: 0, count: 1, calcType: 'multiply' },
+                            { name: '素材5', price: 0, count: 1, calcType: 'multiply' },
+                            { name: '素材6', price: 0, count: 1, calcType: 'multiply' }
+                        ]
+                    }
+                ],
+
+                get sortedSummaryItems() {
+                    let itemsData = this.items.map(item => {
+                        const runs = item.totalRuns || 0;
+                        const success = item.totalSuccess || 0;
+                        const rate = runs > 0 ? (success / runs) : 0;
+                        
+                        let totalRevenue = 0;
+                        let totalCost = 0;
+                        let averageProfit = 0;
+
+                        if (runs > 0) {
+                            const currentCostPerRun = item.materials ? item.materials.reduce((sum, mat) => {
+                                const p = Number(mat.price) || 0;
+                                const c = Number(mat.count) || 0;
+                                return sum + (mat.calcType === 'divide' ? (c > 0 ? p / c : 0) : p * c);
+                            }, 0) : 0;
+                            
+                            totalCost = currentCostPerRun * runs;
+
+                            if (item.calcMode === 'count') {
+                                const netPrice = Math.floor((item.bazaarPrice || 0) * (1 - this.currentTaxRate / 100));
+                                totalRevenue = netPrice * (item.totalYield || 0);
+                            } else {
+                                const rev3 = Math.floor((item.bazaarPrice || 0) * (1 - this.currentTaxRate / 100));
+                                const rev2 = Math.floor((item.bazaarPrice2 || 0) * (1 - this.currentTaxRate / 100));
+                                const normal = Math.max(0, runs - success);
+                                totalRevenue = (rev3 * success) + (rev2 * normal);
+                            }
+                            averageProfit = (totalRevenue - totalCost) / runs;
+                        }
+
+                        return {
+                            ...item,
+                            _calcRate: rate,
+                            _averageProfit: averageProfit,
+                            _runs: runs
+                        };
+                    });
+
+                    if (this.summaryCategoryFilter !== 'すべて') {
+                        itemsData = itemsData.filter(i => i.category === this.summaryCategoryFilter);
+                    }
+
+                    itemsData.sort((a, b) => {
+                        let valA, valB;
+                        switch (this.summarySortKey) {
+                            case 'profit':
+                                valA = a._averageProfit;
+                                valB = b._averageProfit;
+                                break;
+                            case 'rate':
+                                valA = a._calcRate;
+                                valB = b._calcRate;
+                                break;
+                            case 'runs':
+                                valA = a._runs;
+                                valB = b._runs;
+                                break;
+                            case 'name':
+                                return this.summarySortOrder === 'desc' 
+                                    ? b.name.localeCompare(a.name, 'ja')
+                                    : a.name.localeCompare(b.name, 'ja');
+                        }
+                        if (this.summarySortOrder === 'desc') {
+                            return valB - valA;
+                        } else {
+                            return valA - valB;
+                        }
+                    });
+
+                    return itemsData;
+                },
+
+                getGridRows(pattern) {
+                    const patterns = {
+                        '0': [],
+                        '2-1': [['A'], ['B']],
+                        '3-1': [['A'], ['B'], ['C']],
+                        '4-1': [['A'], ['B'], ['C'], ['D']],
+                        '4-2': [['A', 'B'], ['C', 'D']],
+                        '5-1': [['A', 'B'], ['C', 'D'], ['E', null]],
+                        '5-2': [['A', 'B'], ['C', null], ['E', null], ['G', null]],
+                        '5-3': [['A', 'B'], [null, 'D'], ['E', 'F']],
+                        '6-1': [['A', 'B'], ['C', 'D'], ['E', 'F']],
+                        '6-2': [['A', 'B'], ['C', 'D'], ['E', null], ['G', null]],
+                        '7-1': [['A', 'B'], ['C', 'D'], ['E', 'F'], ['G', null]],
+                        '8-1': [['A', 'B'], ['C', 'D'], ['E', 'F'], ['G', 'H']],
+                        '9-1': [['A', 'B', 'C'], ['D', 'E', 'F'], ['G', 'H', 'I']]
+                    };
+                    return patterns[pattern] || [];
+                },
+
+                get t() {
+                    const baseStyles = {
+                        black: {
+                            body: 'bg-slate-900 text-slate-100',
+                            header: 'bg-slate-800 border-slate-700',
+                            card: 'bg-slate-800 border-slate-700',
+                            subCard: 'bg-slate-900/60 border-slate-700/60',
+                            input: 'bg-slate-900 border-slate-700 text-white',
+                        },
+                        white: {
+                            body: 'bg-slate-100 text-slate-900',
+                            header: 'bg-white border-slate-200 shadow-sm',
+                            card: 'bg-white border-slate-200 shadow-sm',
+                            subCard: 'bg-slate-50 border-slate-200',
+                            input: 'bg-slate-50 border-slate-300 text-slate-900',
+                        }
+                    };
+
+                    const accentStyles = {
+                        white: {
+                            accentText: this.currentBase === 'white' ? 'text-slate-900' : 'text-white',
+                            accentBtn: this.currentBase === 'white' ? 'bg-slate-900 hover:bg-slate-800 text-white font-bold' : 'bg-white hover:bg-slate-200 text-slate-900 font-bold',
+                            badgeBg: this.currentBase === 'white' ? 'bg-slate-200 border-slate-400 text-slate-900' : 'bg-slate-700 border-slate-500 text-white'
+                        },
+                        black: {
+                            accentText: 'text-black font-extrabold',
+                            accentBtn: 'bg-black hover:bg-zinc-800 text-white font-bold',
+                            badgeBg: 'bg-zinc-300 border-zinc-500 text-black'
+                        },
+                        red: {
+                            accentText: 'text-red-500',
+                            accentBtn: 'bg-red-600 hover:bg-red-500 text-white',
+                            badgeBg: 'bg-red-950/60 border-red-500 text-red-300'
+                        },
+                        blue: {
+                            accentText: 'text-blue-400',
+                            accentBtn: 'bg-blue-600 hover:bg-blue-500 text-white',
+                            badgeBg: 'bg-blue-950/60 border-blue-500 text-blue-300'
+                        },
+                        yellow: {
+                            accentText: 'text-yellow-400',
+                            accentBtn: 'bg-yellow-500 hover:bg-yellow-400 text-zinc-950 font-bold',
+                            badgeBg: 'bg-yellow-950/60 border-yellow-500 text-yellow-300'
+                        },
+                        green: {
+                            accentText: 'text-emerald-400',
+                            accentBtn: 'bg-emerald-600 hover:bg-emerald-500 text-white',
+                            badgeBg: 'bg-emerald-950/60 border-emerald-500 text-emerald-300'
+                        },
+                        pink: {
+                            accentText: 'text-pink-400',
+                            accentBtn: 'bg-pink-600 hover:bg-pink-500 text-white',
+                            badgeBg: 'bg-pink-950/60 border-pink-500 text-pink-300'
+                        }
+                    };
+
+                    const b = baseStyles[this.currentBase] || baseStyles.black;
+                    const a = accentStyles[this.currentAccent] || accentStyles.blue;
+
+                    return { ...b, ...a };
+                },
+
+                init() {
+                    window.addEventListener('beforeinstallprompt', (e) => {
+                        e.preventDefault();
+                        this.deferredPrompt = e;
+                    });
+
+                    let saved = localStorage.getItem('dqx_mist_craft_data_v29');
+                    if (!saved) saved = localStorage.getItem('dqx_mist_craft_data_v28');
+                    if (!saved) saved = localStorage.getItem('dqx_mist_craft_data_v27');
+                    if (!saved) saved = localStorage.getItem('dqx_mist_craft_data_v26');
+                    if (!saved) saved = localStorage.getItem('dqx_mist_craft_data_v25');
+                    
+                    if (saved) {
+                        try {
+                            const data = JSON.parse(saved);
+                            this.items = (data.items ?? this.items).map(item => {
+                                if (item.totalRuns === undefined) {
+                                    item.totalRuns = item.manualRuns ?? 0;
+                                    item.totalSuccess = item.manualSuccess ?? 0;
+                                }
+                                if (item.inputRuns === undefined) item.inputRuns = 10;
+                                if (item.inputSuccess === undefined) item.inputSuccess = 5;
+                                
+                                if (item.calcMode === undefined) item.calcMode = 'star';
+                                if (item.yield3 === undefined) item.yield3 = 10;
+                                if (item.yield2 === undefined) item.yield2 = 3;
+                                if (item.yield1 === undefined) item.yield1 = 2;
+                                if (item.yield0 === undefined) item.yield0 = 1;
+
+                                if (item.inputCount3 === undefined) item.inputCount3 = 0;
+                                if (item.inputCount2 === undefined) item.inputCount2 = 0;
+                                if (item.inputCount1 === undefined) item.inputCount1 = 0;
+                                if (item.inputCount0 === undefined) item.inputCount0 = 0;
+                                if (item.totalYield === undefined) item.totalYield = 0;
+
+                                if (item.gridPattern === undefined) item.gridPattern = '0';
+                                if (item.gridData === undefined) item.gridData = {};
+                                if (item.memo === undefined) item.memo = '';
+                                
+                                if (!item.createdAt) item.createdAt = this.getTodayStr();
+                                if (!item.updatedAt) item.updatedAt = this.getTodayStr();
+                                return item;
+                            });
+                            this.categories = data.categories ?? this.categories;
+                            this.currentCategory = data.currentCategory ?? this.currentCategory;
+                            this.currentTaxRate = data.currentTaxRate ?? this.currentTaxRate;
+                            this.currentBase = data.currentBase ?? this.currentBase;
+                            this.currentAccent = data.currentAccent ?? this.currentAccent;
+                            this.currentId = data.currentId ?? (this.items[0] ? this.items[0].id : 1);
+                        } catch (e) {
+                            console.error(e);
+                        }
+                    }
+
+                    this.$watch('items', () => {
+                        if (!this.isUndoRedo) this.recordHistory();
+                        this.save();
+                    }, { deep: true });
+
+                    this.$watch('categories', () => {
+                        if (!this.isUndoRedo) this.recordHistory();
+                        this.save();
+                    }, { deep: true });
+
+                    this.$watch('currentCategory', () => {
+                        if (!this.isUndoRedo) this.recordHistory();
+                        const filtered = this.filteredItems;
+                        if (filtered.length > 0 && !filtered.some(i => i.id === this.currentId)) {
+                            this.currentId = filtered[0].id;
+                        }
+                    });
+
+                    this.$watch('currentTaxRate', () => {
+                        if (!this.isUndoRedo) this.recordHistory();
+                        this.save();
+                    });
+
+                    this.$watch('currentBase', () => {
+                        if (!this.isUndoRedo) this.recordHistory();
+                        this.save();
+                    });
+
+                    this.$watch('currentAccent', () => {
+                        if (!this.isUndoRedo) this.recordHistory();
+                        this.save();
+                    });
+                },
+
+                exportData() {
+                    const exportPayload = {
+                        version: 'v29',
+                        exportDate: new Date().toISOString(),
+                        items: this.items,
+                        categories: this.categories,
+                        currentCategory: this.currentCategory,
+                        currentId: this.currentId,
+                        currentTaxRate: this.currentTaxRate,
+                        currentBase: this.currentBase,
+                        currentAccent: this.currentAccent
+                    };
+                    const jsonStr = JSON.stringify(exportPayload, null, 2);
+                    const blob = new Blob([jsonStr], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'ドラクエ10利益計算蓄積データバックアップ.json';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                },
+
+                importData(e) {
+                    const file = e.target.files[0];
+                    if (!file) return;
+
+                    if (!confirm('バックアップファイルからデータを復元しますか？\n※現在の保存データはすべて選択したファイルの内容で上書きされます。')) {
+                        e.target.value = '';
+                        return;
+                    }
+
+                    const reader = new FileReader();
+                    reader.onload = (evt) => {
+                        try {
+                            const data = JSON.parse(evt.target.result);
+                            if (!data || !Array.isArray(data.items)) {
+                                alert('エラー: 有効なバックアップファイルではありません。');
+                                return;
+                            }
+
+                            this.items = data.items;
+                            this.categories = data.categories ?? this.categories;
+                            this.currentCategory = data.currentCategory ?? 'すべて';
+                            this.currentTaxRate = data.currentTaxRate ?? 5;
+                            this.currentBase = data.currentBase ?? 'black';
+                            this.currentAccent = data.currentAccent ?? 'blue';
+                            this.currentId = data.currentId ?? (this.items[0] ? this.items[0].id : 1);
+
+                            this.save();
+                            alert('データの復元が正常に完了しました！');
+                        } catch (err) {
+                            alert('エラー: ファイルの読み込みに失敗しました。');
+                            console.error(err);
+                        } finally {
+                            e.target.value = '';
+                        }
+                    };
+                    reader.readAsText(file);
+                },
+
+                async installApp() {
+                    if (this.deferredPrompt) {
+                        this.deferredPrompt.prompt();
+                        const { outcome } = await this.deferredPrompt.userChoice;
+                        if (outcome === 'accepted') {
+                            this.deferredPrompt = null;
+                        }
+                    } else {
+                        alert("【ホーム画面への追加方法】\n\n・iPhone (Safari) の場合：\n画面下部の「共有アイコン (□に↑)」をタップし、「ホーム画面に追加」を選択してください。\n\n・Android / PC (Chrome等) の場合：\nブラウザ右上の「⋮」メニューから「ホーム画面に追加」または「アプリをインストール」を選択してください。\n\n💡【アップデート時のお願い】\nアップデートがあった場合は、新しくホーム画面に追加して起動してから、古い方のアイコンを削除してください。（データは自動で引き継がれます）");
+                    }
+                },
+
+                recordHistory() {
+                    const currentState = JSON.stringify({
+                        items: this.items,
+                        categories: this.categories,
+                        currentCategory: this.currentCategory,
+                        currentId: this.currentId,
+                        currentTaxRate: this.currentTaxRate,
+                        currentBase: this.currentBase,
+                        currentAccent: this.currentAccent
+                    });
+                    if (this.historyStack.length > 0 && this.historyStack[this.historyStack.length - 1] === currentState) {
+                        return;
+                    }
+                    this.historyStack.push(currentState);
+                    if (this.historyStack.length > 50) {
+                        this.historyStack.shift();
+                    }
+                    this.futureStack = [];
+                },
+
+                undo() {
+                    if (this.historyStack.length === 0) return;
+                    this.isUndoRedo = true;
+                    
+                    const currentState = JSON.stringify({
+                        items: this.items,
+                        categories: this.categories,
+                        currentCategory: this.currentCategory,
+                        currentId: this.currentId,
+                        currentTaxRate: this.currentTaxRate,
+                        currentBase: this.currentBase,
+                        currentAccent: this.currentAccent
+                    });
+                    this.futureStack.push(currentState);
+                    
+                    const prevState = JSON.parse(this.historyStack.pop());
+                    this.items = prevState.items;
+                    this.categories = prevState.categories;
+                    this.currentCategory = prevState.categories.includes(prevState.currentCategory) ? prevState.currentCategory : 'すべて';
+                    this.currentId = prevState.currentId;
+                    this.currentTaxRate = prevState.currentTaxRate;
+                    this.currentBase = prevState.currentBase ?? 'black';
+                    this.currentAccent = prevState.currentAccent ?? 'blue';
+                    
+                    this.$nextTick(() => {
+                        this.isUndoRedo = false;
+                        this.save();
+                    });
+                },
+
+                redo() {
+                    if (this.futureStack.length === 0) return;
+                    this.isUndoRedo = true;
+                    
+                    const currentState = JSON.stringify({
+                        items: this.items,
+                        categories: this.categories,
+                        currentCategory: this.currentCategory,
+                        currentId: this.currentId,
+                        currentTaxRate: this.currentTaxRate,
+                        currentBase: this.currentBase,
+                        currentAccent: this.currentAccent
+                    });
+                    this.historyStack.push(currentState);
+                    
+                    const nextState = JSON.parse(this.futureStack.pop());
+                    this.items = nextState.items;
+                    this.categories = nextState.categories;
+                    this.currentCategory = nextState.categories.includes(nextState.currentCategory) ? nextState.currentCategory : 'すべて';
+                    this.currentId = nextState.currentId;
+                    this.currentTaxRate = nextState.currentTaxRate;
+                    this.currentBase = nextState.currentBase ?? 'black';
+                    this.currentAccent = nextState.currentAccent ?? 'blue';
+                    
+                    this.$nextTick(() => {
+                        this.isUndoRedo = false;
+                        this.save();
+                    });
+                },
+
+                save() {
+                    const data = {
+                        items: this.items,
+                        categories: this.categories,
+                        currentCategory: this.currentCategory,
+                        currentId: this.currentId,
+                        currentTaxRate: this.currentTaxRate,
+                        currentBase: this.currentBase,
+                        currentAccent: this.currentAccent
+                    };
+                    localStorage.setItem('dqx_mist_craft_data_v29', JSON.stringify(data));
+                },
+
+                resetData() {
+                    if (confirm('すべてのデータを初期状態に戻しますか？')) {
+                        localStorage.removeItem('dqx_mist_craft_data_v29');
+                        localStorage.removeItem('dqx_mist_craft_data_v28');
+                        localStorage.removeItem('dqx_mist_craft_data_v27');
+                        localStorage.removeItem('dqx_mist_craft_data_v26');
+                        localStorage.removeItem('dqx_mist_craft_data_v25');
+                        location.reload();
+                    }
+                },
+
+                get filteredItems() {
+                    if (this.currentCategory === 'すべて') {
+                        return this.items;
+                    }
+                    return this.items.filter(i => i.category === this.currentCategory);
+                },
+
+                get currentItem() {
+                    let item = this.items.find(i => i.id === this.currentId);
+                    if (!item && this.filteredItems.length > 0) {
+                        item = this.filteredItems[0];
+                        this.currentId = item.id;
+                    }
+                    if (item && !item.gridData) {
+                        item.gridData = {};
+                    }
+                    return item || this.items[0];
+                },
+
+                selectItem(id) {
+                    this.currentId = id;
+                },
+
+                touchItem() {
+                    if (this.currentItem) {
+                        this.currentItem.updatedAt = this.getTodayStr();
+                    }
+                },
+
+                updateGridData(label, val) {
+                    if (!this.currentItem) return;
+                    if (!this.currentItem.gridData) {
+                        this.currentItem.gridData = {};
+                    }
+                    this.currentItem.gridData = { ...this.currentItem.gridData, [label]: val };
+                    this.touchItem();
+                },
+
+                incrementCount(star) {
+                    if (!this.currentItem) return;
+                    const key = 'inputCount' + star;
+                    if (this.currentItem[key] === undefined) this.currentItem[key] = 0;
+                    this.currentItem[key]++;
+                    this.touchItem();
+                },
+                decrementCount(star) {
+                    if (!this.currentItem) return;
+                    const key = 'inputCount' + star;
+                    if (this.currentItem[key] === undefined) this.currentItem[key] = 0;
+                    if (this.currentItem[key] > 0) this.currentItem[key]--;
+                    this.touchItem();
+                },
+                resetCountTable() {
+                    if (!this.currentItem) return;
+                    this.currentItem.inputCount3 = 0;
+                    this.currentItem.inputCount2 = 0;
+                    this.currentItem.inputCount1 = 0;
+                    this.currentItem.inputCount0 = 0;
+                    this.touchItem();
+                },
+
+                get countTableTotalRuns() {
+                    const item = this.currentItem;
+                    if (!item) return 0;
+                    return (Number(item.inputCount3) || 0) + (Number(item.inputCount2) || 0) + (Number(item.inputCount1) || 0) + (Number(item.inputCount0) || 0);
+                },
+                get countTableTotalYield() {
+                    const item = this.currentItem;
+                    if (!item) return 0;
+                    const c3 = Number(item.inputCount3) || 0;
+                    const c2 = Number(item.inputCount2) || 0;
+                    const c1 = Number(item.inputCount1) || 0;
+                    const c0 = Number(item.inputCount0) || 0;
+                    
+                    const y3 = Number(item.yield3) || 10;
+                    const y2 = Number(item.yield2) || 3;
+                    const y1 = Number(item.yield1) || 2;
+                    const y0 = Number(item.yield0) || 1;
+                    
+                    return (c3 * y3) + (c2 * y2) + (c1 * y1) + (c0 * y0);
+                },
+                get countTableSuccessRate() {
+                    const runs = this.countTableTotalRuns;
+                    if (runs <= 0) return '0.00';
+                    const c3 = Number(this.currentItem.inputCount3) || 0;
+                    return ((c3 / runs) * 100).toFixed(2);
+                },
+
+                addCategory() {
+                    const name = prompt('新しいカテゴリー名を入力してください');
+                    if (name && !this.categories.includes(name)) {
+                        this.categories.push(name);
+                        this.currentCategory = name;
+                        this.addItem(name);
+                    }
+                },
+
+                removeCategory(cat) {
+                    if (cat === 'すべて') return;
+                    if (confirm(`カテゴリー「${cat}」および、そこに属するアイテムをすべて削除しますか？`)) {
+                        this.categories = this.categories.filter(c => c !== cat);
+                        this.items = this.items.filter(i => i.category !== cat);
+                        if (this.currentCategory === cat) {
+                            this.currentCategory = 'すべて';
+                        }
+                        if (this.items.length === 0) {
+                            this.addItem('武器');
+                        } else {
+                            this.currentId = this.filteredItems[0] ? this.filteredItems[0].id : this.items[0].id;
+                        }
+                    }
+                },
+
+                addItem() {
+                    let cat = this.currentCategory;
+                    if (!cat || cat === 'すべて') {
+                        cat = this.categories.find(c => c !== 'すべて') || '武器';
+                    }
+                    const newId = Date.now();
+                    const todayStr = this.getTodayStr();
+                    this.items.push({
+                        id: newId,
+                        category: cat,
+                        name: 'アイテム名',
+                        calcMode: 'star',
+                        yield3: 10,
+                        yield2: 3,
+                        yield1: 2,
+                        yield0: 1,
+                        inputCount3: 0,
+                        inputCount2: 0,
+                        inputCount1: 0,
+                        inputCount0: 0,
+                        bazaarPrice: 1000000,
+                        bazaarPrice2: 0,
+                        totalRuns: 0,
+                        totalSuccess: 0,
+                        totalYield: 0,
+                        inputRuns: 10,
+                        inputSuccess: 5,
+                        gridPattern: '0',
+                        gridData: {},
+                        memo: '',
+                        createdAt: todayStr,
+                        updatedAt: todayStr,
+                        materials: [
+                            { name: '素材1', price: 0, count: 1, calcType: 'multiply' },
+                            { name: '素材2', price: 0, count: 1, calcType: 'multiply' },
+                            { name: '素材3', price: 0, count: 1, calcType: 'multiply' },
+                            { name: '素材4', price: 0, count: 1, calcType: 'multiply' },
+                            { name: '素材5', price: 0, count: 1, calcType: 'multiply' },
+                            { name: '素材6', price: 0, count: 1, calcType: 'multiply' }
+                        ]
+                    });
+                    this.currentId = newId;
+                },
+
+                removeItem(id) {
+                    if (this.items.length <= 1) {
+                        alert('最低1つのアイテムが必要です');
+                        return;
+                    }
+                    if (confirm('このアイテムを削除しますか？')) {
+                        this.items = this.items.filter(i => i.id !== id);
+                        const filtered = this.filteredItems;
+                        if (filtered.length > 0) {
+                            this.currentId = filtered[0].id;
+                        } else {
+                            this.currentCategory = 'すべて';
+                            this.currentId = this.items[0].id;
+                        }
+                    }
+                },
+
+                addManualRecord() {
+                    const item = this.currentItem;
+                    if (!item) return;
+
+                    let addRuns = 0;
+                    let addSuccess = 0;
+                    let addYield = 0;
+
+                    if (item.calcMode === 'count' && this.countTableTotalRuns > 0) {
+                        addRuns = this.countTableTotalRuns;
+                        addSuccess = Number(item.inputCount3) || 0;
+                        addYield = this.countTableTotalYield;
+                    } else {
+                        addRuns = Number(item.inputRuns) || 0;
+                        addSuccess = Number(item.inputSuccess) || 0;
+                        addYield = this.previewInputYield;
+                    }
+
+                    if (addRuns <= 0) {
+                        alert('実施回数は1回以上（またはカウント1以上）を入力してください');
+                        return;
+                    }
+                    if (addSuccess > addRuns) {
+                        alert('大成功数が実施回数を超えています');
+                        return;
+                    }
+
+                    if (item.totalRuns === undefined) item.totalRuns = 0;
+                    if (item.totalSuccess === undefined) item.totalSuccess = 0;
+                    if (item.totalYield === undefined) item.totalYield = 0;
+
+                    item.totalRuns += addRuns;
+                    item.totalSuccess += addSuccess;
+                    item.totalYield += addYield;
+
+                    if (item.calcMode === 'count' && this.countTableTotalRuns > 0) {
+                        this.resetCountTable();
+                    }
+                    this.touchItem();
+                },
+
+                resetManualRecord() {
+                    if (confirm('このアイテムの累計実績データをリセットしますか？')) {
+                        this.currentItem.totalRuns = 0;
+                        this.currentItem.totalSuccess = 0;
+                        this.currentItem.totalYield = 0;
+                        this.touchItem();
+                    }
+                },
+
+                updateMatPrice(mat) {
+                    const name = mat.name ? mat.name.trim() : '';
+                    const price = Number(mat.price) || 0;
+                    if (!name) return;
+                    this.items.forEach(item => {
+                        item.materials.forEach(m => {
+                            if (m.name && m.name.trim() === name) {
+                                m.price = price;
+                            }
+                        });
+                    });
+                    this.touchItem();
+                },
+
+                updateMatName(mat) {
+                    const name = mat.name ? mat.name.trim() : '';
+                    if (!name) return;
+                    let foundPrice = null;
+                    for (let item of this.items) {
+                        for (let m of item.materials) {
+                            if (m !== mat && m.name && m.name.trim() === name) {
+                                foundPrice = m.price;
+                                break;
+                            }
+                        }
+                        if (foundPrice !== null) break;
+                    }
+                    if (foundPrice !== null) {
+                        mat.price = foundPrice;
+                    }
+                    this.touchItem();
+                },
+
+                calcMatCost(mat) {
+                    const price = Number(mat.price) || 0;
+                    const count = Number(mat.count) || 0;
+                    if (mat.calcType === 'divide') {
+                        return count > 0 ? price / count : 0;
+                    } else {
+                        return price * count;
+                    }
+                },
+
+                get costPerRun() {
+                    if (!this.currentItem || !this.currentItem.materials) return 0;
+                    return this.currentItem.materials.reduce((sum, mat) => {
+                        return sum + this.calcMatCost(mat);
+                    }, 0);
+                },
+
+                getOneSuccessRevenue(item) {
+                    const rev3 = Math.floor((item.bazaarPrice || 0) * (1 - this.currentTaxRate / 100));
+                    if (item.calcMode === 'count') {
+                        const yield3 = Number(item.yield3) || 10;
+                        return rev3 * yield3;
+                    }
+                    return rev3;
+                },
+
+                getOneNormalRevenue(item) {
+                    // ★修正: 個数計算の時は bazaarPrice (1個の単価) を基準に計算する
+                    if (item.calcMode === 'count') {
+                        const rev = Math.floor((item.bazaarPrice || 0) * (1 - this.currentTaxRate / 100));
+                        const yield2 = Number(item.yield2) || 3;
+                        return rev * yield2;
+                    }
+                    const rev2 = Math.floor((item.bazaarPrice2 || 0) * (1 - this.currentTaxRate / 100));
+                    return rev2;
+                },
+
+                calcTierProfit(successCount) {
+                    const item = this.currentItem;
+                    if (!item) return 0;
+                    
+                    const oneSuccessRev = this.getOneSuccessRevenue(item);
+                    const oneNormalRev = this.getOneNormalRevenue(item);
+                    
+                    const normalCount = Math.max(0, 30 - successCount);
+                    const totalRevenue = (oneSuccessRev * successCount) + (oneNormalRev * normalCount);
+                    const totalCost = Math.floor(this.costPerRun * 30);
+                    
+                    return Math.floor(totalRevenue - totalCost);
+                },
+
+                calcTierYield(successCount) {
+                    const item = this.currentItem;
+                    if (!item) return 0;
+                    const normalCount = Math.max(0, 30 - successCount);
+                    const yield3 = Number(item.yield3) || 10;
+                    const yield2 = Number(item.yield2) || 3;
+                    return (successCount * yield3) + (normalCount * yield2);
+                },
+
+                get breakEvenCount() {
+                    const item = this.currentItem;
+                    if (!item) return "0.0";
+                    
+                    const totalCost30 = this.costPerRun * 30;
+
+                    if (item.calcMode === 'count') {
+                        // ★修正: 星3も星2も共通の1個の単価 (bazaarPrice) を元に計算
+                        const price = Number(item.bazaarPrice) || 0;
+                        const netPrice = Math.floor(price * (1 - this.currentTaxRate / 100));
+                        
+                        if (netPrice <= 0) return "達成不可";
+                        
+                        // 必要な合計個数 ＝ 30回原価 ÷ 手数料引き後の1個の単価
+                        const requiredYield = Math.ceil(totalCost30 / netPrice);
+                        return requiredYield.toLocaleString();
+                    } else {
+                        const rev3 = Math.floor((item.bazaarPrice || 0) * (1 - this.currentTaxRate / 100));
+                        const rev2 = Math.floor((item.bazaarPrice2 || 0) * (1 - this.currentTaxRate / 100));
+                        const diff = rev3 - rev2;
+                        if (diff <= 0) {
+                            if (rev3 * 30 >= totalCost30) return "0.0"; 
+                            return "達成不可";
+                        }
+                        const required = (totalCost30 - (rev2 * 30)) / diff;
+                        return Math.max(0, required).toFixed(1);
+                    }
+                },
+
+                get manualRate() {
+                    const runs = this.currentItem.totalRuns || 0;
+                    const success = this.currentItem.totalSuccess || 0;
+                    if (runs <= 0) return '0.00';
+                    return ((success / runs) * 100).toFixed(2);
+                },
+
+                get manualAverageYield() {
+                    const item = this.currentItem;
+                    if (!item) return '0.00';
+                    const runs = item.totalRuns || 0;
+                    if (runs <= 0) return '0.00';
+                    const totalYield = this.manualTotalYield;
+                    return (totalYield / runs).toFixed(2);
+                },
+
+                get manualRevenue() {
+                    const item = this.currentItem;
+                    if (!item) return 0;
+                    
+                    if (item.calcMode === 'count' && item.totalYield > 0) {
+                        const netPrice = Math.floor((item.bazaarPrice || 0) * (1 - this.currentTaxRate / 100));
+                        return netPrice * item.totalYield;
+                    }
+
+                    const oneSuccessRev = this.getOneSuccessRevenue(item);
+                    const oneNormalRev = this.getOneNormalRevenue(item);
+                    
+                    const runs = item.totalRuns || 0;
+                    const success = item.totalSuccess || 0;
+                    const normal = Math.max(0, runs - success);
+                    
+                    return (oneSuccessRev * success) + (oneNormalRev * normal);
+                },
+
+                get manualTotalYield() {
+                    const item = this.currentItem;
+                    if (!item) return 0;
+                    if (item.totalYield && item.totalYield > 0) return item.totalYield;
+
+                    const runs = item.totalRuns || 0;
+                    const success = item.totalSuccess || 0;
+                    const normal = Math.max(0, runs - success);
+                    
+                    if (item.calcMode === 'count') {
+                        const yield3 = Number(item.yield3) || 10;
+                        const yield2 = Number(item.yield2) || 3;
+                        return (success * yield3) + (normal * yield2);
+                    }
+                    return runs;
+                },
+
+                get manualTotalCost() {
+                    const runs = this.currentItem.totalRuns || 0;
+                    return Math.floor(this.costPerRun * runs);
+                },
+
+                get manualProfit() {
+                    return this.manualRevenue - this.manualTotalCost;
+                },
+
+                get previewInputRuns() {
+                    const item = this.currentItem;
+                    if (!item) return 0;
+                    if (item.calcMode === 'count' && this.countTableTotalRuns > 0) {
+                        return this.countTableTotalRuns;
+                    }
+                    return Number(item.inputRuns) || 0;
+                },
+
+                get previewInputSuccess() {
+                    const item = this.currentItem;
+                    if (!item) return 0;
+                    if (item.calcMode === 'count' && this.countTableTotalRuns > 0) {
+                        return Number(item.inputCount3) || 0;
+                    }
+                    return Number(item.inputSuccess) || 0;
+                },
+
+                get previewInputRate() {
+                    const runs = this.previewInputRuns;
+                    const success = this.previewInputSuccess;
+                    if (runs <= 0) return '0.00';
+                    return ((success / runs) * 100).toFixed(2);
+                },
+
+                get previewInputYield() {
+                    const item = this.currentItem;
+                    if (!item) return 0;
+                    
+                    if (item.calcMode === 'count' && this.countTableTotalRuns > 0) {
+                        return this.countTableTotalYield;
+                    }
+
+                    const addRuns = Number(item.inputRuns) || 0;
+                    const addSuccess = Number(item.inputSuccess) || 0;
+                    const addNormal = Math.max(0, addRuns - addSuccess);
+                    
+                    if (item.calcMode === 'count') {
+                        const yield3 = Number(item.yield3) || 10;
+                        const yield2 = Number(item.yield2) || 3;
+                        return (addSuccess * yield3) + (addNormal * yield2);
+                    }
+                    return addRuns;
+                },
+                
+                get previewInputProfit() {
+                    const item = this.currentItem;
+                    if (!item) return 0;
+                    
+                    let inputRev = 0;
+                    const addRuns = this.previewInputRuns;
+
+                    if (item.calcMode === 'count' && this.countTableTotalRuns > 0) {
+                        const netPrice = Math.floor((item.bazaarPrice || 0) * (1 - this.currentTaxRate / 100));
+                        inputRev = netPrice * this.countTableTotalYield;
+                    } else {
+                        const oneSuccessRev = this.getOneSuccessRevenue(item);
+                        const oneNormalRev = this.getOneNormalRevenue(item);
+                        const addSuccess = this.previewInputSuccess;
+                        const addNormal = Math.max(0, addRuns - addSuccess);
+                        inputRev = (oneSuccessRev * addSuccess) + (oneNormalRev * addNormal);
+                    }
+
+                    const inputCost = Math.floor(this.costPerRun * addRuns);
+                    return Math.floor(inputRev - inputCost);
+                },
+
+                formatNumber(num) {
+                    return Number(Math.round(num)).toLocaleString();
+                },
+
+                addMaterial() {
+                    this.currentItem.materials.push({ name: '新しい素材', price: 0, count: 1, calcType: 'multiply' });
+                    this.touchItem();
+                },
+
+                removeMaterial(index) {
+                    if (this.currentItem.materials.length <= 1) {
+                        alert('最低1つの素材が必要です');
+                        return;
+                    }
+                    this.currentItem.materials.splice(index, 1);
+                    this.touchItem();
+                }
+            }
+        }
+    </script>
+<footer style="text-align:center;font-size:12px;color:#888;margin-top:40px;padding-bottom:16px;line-height:1.7;">
+        <p>※本ツールは非公式のファンメイドツールです。「ドラゴンクエストX」および関連する名称・情報の権利は株式会社スクウェア・エニックスに帰属します。</p>
+        <p>入力データはお使いのブラウザ内にのみ保存されます（サーバーには送信されません）。</p>
+    </footer>
+</body>
+</html>
