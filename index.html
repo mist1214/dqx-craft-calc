@@ -23,6 +23,10 @@
     </style>
 </head>
 <body :class="t.body" class="min-h-screen p-4 sm:p-6 transition-colors duration-200" x-data="craftApp()">
+<div id="liveBanner" style="display:none;align-items:center;gap:8px;background:#c81e1e;color:#fff;padding:8px 12px;font-size:13px;font-weight:bold;border-radius:10px;margin-bottom:12px;">
+  <a id="liveBannerLink" href="#" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;flex:1;line-height:1.4;"></a>
+  <button id="liveBannerClose" aria-label="閉じる" style="background:rgba(255,255,255,.2);border:none;color:#fff;font-size:14px;font-weight:bold;border-radius:6px;padding:2px 9px;cursor:pointer;flex:none;">×</button>
+</div>
 
     <!-- ファイル読み込み用非表示インプット -->
     <input type="file" x-ref="fileInput" @change="importData($event)" accept=".json" class="hidden">
@@ -534,7 +538,7 @@
                                     <!-- 星3 -->
                                     <div class="p-2 flex flex-col items-center justify-between cursor-pointer hover:bg-slate-700/50 transition select-none" @click="incrementCount(3)">
                                         <div class="text-xs font-bold text-amber-400">星３</div>
-                                        <div class="text-[11px] opacity-80" x-text="'(' + (currentItem.yield3 || 10) + '個)'"></div>
+                                        <div class="text-[11px] opacity-80" x-text="'(' + yieldOr(currentItem.yield3, 10) + '個)'"></div>
                                         <div class="mt-1.5 flex items-center gap-1" @click.stop>
                                             <button @click="decrementCount(3)" class="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 text-xs font-bold">-</button>
                                             <input type="text" inputmode="numeric" x-model.number="currentItem.inputCount3" @change="touchItem()" class="w-9 text-center text-xs font-bold rounded bg-slate-900 border border-slate-600 py-0.5">
@@ -544,7 +548,7 @@
                                     <!-- 星2 -->
                                     <div class="p-2 flex flex-col items-center justify-between cursor-pointer hover:bg-slate-700/50 transition select-none" @click="incrementCount(2)">
                                         <div class="text-xs font-bold text-slate-200">星２</div>
-                                        <div class="text-[11px] opacity-80" x-text="'(' + (currentItem.yield2 || 3) + '個)'"></div>
+                                        <div class="text-[11px] opacity-80" x-text="'(' + yieldOr(currentItem.yield2, 3) + '個)'"></div>
                                         <div class="mt-1.5 flex items-center gap-1" @click.stop>
                                             <button @click="decrementCount(2)" class="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 text-xs font-bold">-</button>
                                             <input type="text" inputmode="numeric" x-model.number="currentItem.inputCount2" @change="touchItem()" class="w-9 text-center text-xs font-bold rounded bg-slate-900 border border-slate-600 py-0.5">
@@ -554,7 +558,7 @@
                                     <!-- 星1 -->
                                     <div class="p-2 flex flex-col items-center justify-between cursor-pointer hover:bg-slate-700/50 transition select-none" @click="incrementCount(1)">
                                         <div class="text-xs font-bold text-slate-300">星１</div>
-                                        <div class="text-[11px] opacity-80" x-text="'(' + (currentItem.yield1 || 2) + '個)'"></div>
+                                        <div class="text-[11px] opacity-80" x-text="'(' + yieldOr(currentItem.yield1, 2) + '個)'"></div>
                                         <div class="mt-1.5 flex items-center gap-1" @click.stop>
                                             <button @click="decrementCount(1)" class="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 text-xs font-bold">-</button>
                                             <input type="text" inputmode="numeric" x-model.number="currentItem.inputCount1" @change="touchItem()" class="w-9 text-center text-xs font-bold rounded bg-slate-900 border border-slate-600 py-0.5">
@@ -564,7 +568,7 @@
                                     <!-- 星0 -->
                                     <div class="p-2 flex flex-col items-center justify-between cursor-pointer hover:bg-slate-700/50 transition select-none" @click="incrementCount(0)">
                                         <div class="text-xs font-bold text-slate-400">星０</div>
-                                        <div class="text-[11px] opacity-80" x-text="'(' + (currentItem.yield0 || 1) + '個)'"></div>
+                                        <div class="text-[11px] opacity-80" x-text="'(' + yieldOr(currentItem.yield0, 1) + '個)'"></div>
                                         <div class="mt-1.5 flex items-center gap-1" @click.stop>
                                             <button @click="decrementCount(0)" class="w-5 h-5 rounded bg-slate-700 hover:bg-slate-600 text-xs font-bold">-</button>
                                             <input type="text" inputmode="numeric" x-model.number="currentItem.inputCount0" @change="touchItem()" class="w-9 text-center text-xs font-bold rounded bg-slate-900 border border-slate-600 py-0.5">
@@ -716,13 +720,13 @@
                     <div class="space-y-2 pt-2 border-t opacity-90" :style="'border-color: currentColor'">
                         <div :class="t.subCard" class="text-xs flex justify-between p-2.5 rounded-lg border">
                             <span class="opacity-75">
-                                <span x-text="currentItem.calcMode === 'count' ? '星3 1回作成時(' + (currentItem.yield3 || 10) + '個) 手取:' : '星3 手数料引後手取額:'"></span>
+                                <span x-text="currentItem.calcMode === 'count' ? '星3 1回作成時(' + yieldOr(currentItem.yield3, 10) + '個) 手取:' : '星3 手数料引後手取額:'"></span>
                             </span>
                             <span class="font-semibold" x-text="formatNumber(getOneSuccessRevenue(currentItem)) + ' G' + (currentItem.calcMode === 'count' ? ' (単価 ' + formatNumber(Math.floor(currentItem.bazaarPrice * (1 - currentTaxRate / 100))) + ' G)' : '')"></span>
                         </div>
                         <div :class="t.subCard" class="text-xs flex justify-between p-2.5 rounded-lg border">
                             <span class="opacity-75">
-                                <span x-text="currentItem.calcMode === 'count' ? '星2 1回作成時(' + (currentItem.yield2 || 3) + '個) 手取:' : '星2 手数料引後手取額:'"></span>
+                                <span x-text="currentItem.calcMode === 'count' ? '星2 1回作成時(' + yieldOr(currentItem.yield2, 3) + '個) 手取:' : '星2 手数料引後手取額:'"></span>
                             </span>
                             <span class="font-semibold" x-text="formatNumber(getOneNormalRevenue(currentItem)) + ' G' + (currentItem.calcMode === 'count' ? ' (単価 ' + formatNumber(Math.floor(currentItem.bazaarPrice * (1 - currentTaxRate / 100))) + ' G)' : '')"></span>
                         </div>
@@ -745,7 +749,7 @@
                                     <div class="text-xs opacity-75">
                                         <span x-text="tier.rate"></span>
                                         <span x-show="currentItem.calcMode !== 'count'" x-text="' （大成功' + tier.count + '回 / 失敗' + (30 - tier.count) + '回）'"></span>
-                                        <span x-show="currentItem.calcMode === 'count'" x-text="' （大成功' + tier.count + '回[' + (tier.count * (currentItem.yield3||10)) + '個] / 失敗' + (30 - tier.count) + '回[' + ((30 - tier.count) * (currentItem.yield2||3)) + '個] → 計' + calcTierYield(tier.count) + '個）'"></span>
+                                        <span x-show="currentItem.calcMode === 'count'" x-text="' （大成功' + tier.count + '回[' + (tier.count * yieldOr(currentItem.yield3, 10)) + '個] / 失敗' + (30 - tier.count) + '回[' + ((30 - tier.count) * yieldOr(currentItem.yield2, 3)) + '個] → 計' + calcTierYield(tier.count) + '個）'"></span>
                                     </div>
                                     <div class="text-sm font-bold" x-text="formatNumber(calcTierProfit(tier.count)) + ' G'"></div>
                                 </div>
@@ -785,6 +789,13 @@
     <script>
         function craftApp() {
             return {
+                // 完成個数：0は「0個」として扱い、空欄・未設定の時だけ初期値を使う
+                // （従来の `Number(v) || 初期値` は 0 を初期値にすり替えていた）
+                yieldOr(v, d) {
+                    if (v === '' || v === null || v === undefined) return d;
+                    const n = Number(v);
+                    return Number.isNaN(n) ? d : n;
+                },
                 mobileTab: 'material',
                 getTodayStr() {
                     return new Date().toISOString().slice(0, 10).replace(/-/g, '/');
@@ -1338,10 +1349,10 @@
                     const c1 = Number(item.inputCount1) || 0;
                     const c0 = Number(item.inputCount0) || 0;
                     
-                    const y3 = Number(item.yield3) || 10;
-                    const y2 = Number(item.yield2) || 3;
-                    const y1 = Number(item.yield1) || 2;
-                    const y0 = Number(item.yield0) || 1;
+                    const y3 = this.yieldOr(item.yield3, 10);
+                    const y2 = this.yieldOr(item.yield2, 3);
+                    const y1 = this.yieldOr(item.yield1, 2);
+                    const y0 = this.yieldOr(item.yield0, 1);
                     
                     return (c3 * y3) + (c2 * y2) + (c1 * y1) + (c0 * y0);
                 },
@@ -1541,7 +1552,7 @@
                 getOneSuccessRevenue(item) {
                     const rev3 = Math.floor((item.bazaarPrice || 0) * (1 - this.currentTaxRate / 100));
                     if (item.calcMode === 'count') {
-                        const yield3 = Number(item.yield3) || 10;
+                        const yield3 = this.yieldOr(item.yield3, 10);
                         return rev3 * yield3;
                     }
                     return rev3;
@@ -1551,7 +1562,7 @@
                     // ★修正: 個数計算の時は bazaarPrice (1個の単価) を基準に計算する
                     if (item.calcMode === 'count') {
                         const rev = Math.floor((item.bazaarPrice || 0) * (1 - this.currentTaxRate / 100));
-                        const yield2 = Number(item.yield2) || 3;
+                        const yield2 = this.yieldOr(item.yield2, 3);
                         return rev * yield2;
                     }
                     const rev2 = Math.floor((item.bazaarPrice2 || 0) * (1 - this.currentTaxRate / 100));
@@ -1576,8 +1587,8 @@
                     const item = this.currentItem;
                     if (!item) return 0;
                     const normalCount = Math.max(0, 30 - successCount);
-                    const yield3 = Number(item.yield3) || 10;
-                    const yield2 = Number(item.yield2) || 3;
+                    const yield3 = this.yieldOr(item.yield3, 10);
+                    const yield2 = this.yieldOr(item.yield2, 3);
                     return (successCount * yield3) + (normalCount * yield2);
                 },
 
@@ -1655,8 +1666,8 @@
                     const normal = Math.max(0, runs - success);
                     
                     if (item.calcMode === 'count') {
-                        const yield3 = Number(item.yield3) || 10;
-                        const yield2 = Number(item.yield2) || 3;
+                        const yield3 = this.yieldOr(item.yield3, 10);
+                        const yield2 = this.yieldOr(item.yield2, 3);
                         return (success * yield3) + (normal * yield2);
                     }
                     return runs;
@@ -1709,8 +1720,8 @@
                     const addNormal = Math.max(0, addRuns - addSuccess);
                     
                     if (item.calcMode === 'count') {
-                        const yield3 = Number(item.yield3) || 10;
-                        const yield2 = Number(item.yield2) || 3;
+                        const yield3 = this.yieldOr(item.yield3, 10);
+                        const yield2 = this.yieldOr(item.yield2, 3);
                         return (addSuccess * yield3) + (addNormal * yield2);
                     }
                     return addRuns;
@@ -1762,5 +1773,37 @@
         <p>※本ツールは非公式のファンメイドツールです。「ドラゴンクエストX」および関連する名称・情報の権利は株式会社スクウェア・エニックスに帰属します。</p>
         <p>入力データはお使いのブラウザ内にのみ保存されます（サーバーには送信されません）。</p>
     </footer>
+<script>
+  // 配信のお知らせバー（×で消すと、そのお知らせについては再表示しない）
+  (function () {
+    var STORE_KEY = 'mist_live_banner_dismissed';
+    fetch('https://flat-cake-9635mist-live-check.mist12141208-ec9.workers.dev/')
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d) return;
+        var text, key;
+        if (d.live) {
+          text = '🔴 現在開発者がYouTubeでライブ配信中です！応援よろしくお願いいたします！';
+          key = 'live:' + (d.videoId || '');
+        } else if (d.lastLiveDate) {
+          text = '📺 ' + d.lastLiveDate + 'に開発者がライブ配信をしてました！チャンネル登録をして待っててね！';
+          key = 'last:' + d.lastLiveDate;
+        } else {
+          return;
+        }
+        try { if (localStorage.getItem(STORE_KEY) === key) return; } catch (e) {}
+        var bar = document.getElementById('liveBanner');
+        var link = document.getElementById('liveBannerLink');
+        link.textContent = text;
+        link.href = d.url;
+        bar.style.display = 'flex';
+        document.getElementById('liveBannerClose').onclick = function () {
+          bar.style.display = 'none';
+          try { localStorage.setItem(STORE_KEY, key); } catch (e) {}
+        };
+      })
+      .catch(function () {});
+  })();
+</script>
 </body>
 </html>
