@@ -20,11 +20,19 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
         [x-cloak] { display: none !important; }
+        /* 配信バナー：配信中のみ横スクロール（テロップ） */
+        #liveBannerLink.mist-marquee { overflow: hidden; }
+        #liveBannerLink.mist-marquee .mist-marquee-track { display: inline-flex; white-space: nowrap; animation: mist-marquee-scroll 18s linear infinite; }
+        #liveBannerLink.mist-marquee .mist-marquee-copy { padding-right: 4em; }
+        @keyframes mist-marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @media (prefers-reduced-motion: reduce) {
+            #liveBannerLink.mist-marquee .mist-marquee-track { animation: none; }
+        }
     </style>
 </head>
 <body :class="t.body" class="min-h-screen p-4 sm:p-6 transition-colors duration-200" x-data="craftApp()">
 <div id="liveBanner" style="display:none;align-items:center;gap:8px;background:#c81e1e;color:#fff;padding:8px 12px;font-size:13px;font-weight:bold;border-radius:10px;margin-bottom:12px;">
-  <a id="liveBannerLink" href="#" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;flex:1;line-height:1.4;"></a>
+  <a id="liveBannerLink" href="#" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;flex:1;min-width:0;line-height:1.4;"></a>
   <button id="liveBannerClose" aria-label="閉じる" style="background:rgba(255,255,255,.2);border:none;color:#fff;font-size:14px;font-weight:bold;border-radius:6px;padding:2px 9px;cursor:pointer;flex:none;">×</button>
 </div>
 
@@ -1800,7 +1808,21 @@
         try { if (localStorage.getItem(STORE_KEY) === key) return; } catch (e) {}
         var bar = document.getElementById('liveBanner');
         var link = document.getElementById('liveBannerLink');
-        link.textContent = text;
+        if (d.live) {
+          // 配信中のみ横スクロール（テロップ）表示にする
+          link.classList.add('mist-marquee');
+          var track = document.createElement('span');
+          track.className = 'mist-marquee-track';
+          for (var i = 0; i < 2; i++) {
+            var copy = document.createElement('span');
+            copy.className = 'mist-marquee-copy';
+            copy.textContent = text;
+            track.appendChild(copy);
+          }
+          link.appendChild(track);
+        } else {
+          link.textContent = text;
+        }
         link.href = d.url;
         bar.style.display = 'flex';
         document.getElementById('liveBannerClose').onclick = function () {
